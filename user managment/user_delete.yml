@@ -1,0 +1,13 @@
+---
+- name: User Managment
+  hosts:  all
+
+  tasks:
+  - name: User Creation
+    user:
+      name: suraj.yadav
+      comment:  new user adding for QA team
+      shell:  /bin/bash
+      group:  QA 
+      state:  absent
+      remove: yes
