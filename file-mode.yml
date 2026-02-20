@@ -1,0 +1,11 @@
+---
+- name: File Module Example
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: Creating a simple file
+      file:
+        path: /tmp/newfile.txt
+        state: touch
+        mode: u=rwx,g=rw,o=r 

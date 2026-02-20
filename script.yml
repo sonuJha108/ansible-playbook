@@ -1,0 +1,25 @@
+---
+- name: Run a script safely
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: Ensure script directory exists
+      file:
+        path: /tmp/script
+        state: directory
+        mode: '0755'
+
+    - name: Copy the script to remote host
+      copy:
+        src: /tmp/script/test.sh   # path on control node
+        dest: /tmp/script/test.sh  # path on remote node
+        mode: '0755'
+
+    - name: Execute script
+      shell: /tmp/script/test.sh
+      register: script_output
+
+    - name: Show script output
+      debug:
+        var: script_output.stdout
